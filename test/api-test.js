@@ -124,37 +124,37 @@ describe('Benchmarks', function () {
   buf.writeUInt32LE(456, 4);
 
   benchmark("readInt32", 1000000, {
-    Native () {
+    Native: function () {
       return atomic.readInt32(buf, 0);
     },
-    Node () {
+    Node: function () {
       return buf.readInt32LE(0);
     }
   });
 
   benchmark("readUInt32", 1000000, {
-    Native () {
+    Native: function () {
       return atomic.readUInt32(buf, 4);
     },
-    Node () {
+    Node: function () {
       return buf.readUInt32LE(4);
     }
   });
 
   benchmark("writeInt32", 1000000, {
-    Native () {
+    Native: function () {
       return atomic.writeInt32(buf, 4096, 0);
     },
-    Node () {
+    Node: function () {
       return buf.writeInt32LE(4096, 0);
     }
   });
 
   benchmark("writeUInt32", 1000000, {
-    Native () {
+    Native: function () {
       return atomic.writeUInt32(buf, 4096, 0);
     },
-    Node () {
+    Node: function () {
       return buf.writeUInt32LE(4096, 0);
     }
   });
