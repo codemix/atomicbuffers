@@ -1,14 +1,14 @@
 {
-  "name": "atomic-writes",
+  "name": "atomicbuffers",
   "version": "1.0.0",
-  "description": "atomic writeInt() etc",
-  "main": "lib/atomic-writes.js",
+  "description": "Atomic `readInt32()`, `writeInt32()`, `readUInt32()` and `writeUInt32()` for node.js buffers.",
+  "main": "lib/atomicbuffers.js",
   "scripts": {
     "test": "mocha -gc --reporter=spec test/**/*-test.js"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:codemix/atomic-writes"
+    "url": "git@github.com:codemix/atomicbuffers"
   },
   "keywords": [
     "buffer"
@@ -16,9 +16,9 @@
   "author": "Charles Pick <charles@codemix.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/codemix/atomic-writes/issues"
+    "url": "https://github.com/codemix/atomicbuffers/issues"
   },
-  "homepage": "https://github.com/codemix/atomic-writes",
+  "homepage": "https://github.com/codemix/atomicbuffers",
   "devDependencies": {
     "mocha": "^1.21.5"
   },

@@ -1,12 +1,12 @@
 {
   "targets": [{
-    "target_name": "atomic-writes",
+    "target_name": "atomicbuffers",
     "include_dirs": [
       "src",
       "<!(node -e \"require('nan')\")",
     ],
     "sources": [
-      "src/atomic-writes.cc",
-    ],
+      "src/atomicbuffers.cc"
+    ]
   }],
 }
