@@ -119,7 +119,7 @@ describe('atomic-writes.js', function() {
 });
 
 describe('Benchmarks', function () {
-  let buf = new Buffer(16).fill(0);
+  var buf = new Buffer(16).fill(0);
   buf.writeInt32LE(123, 0);
   buf.writeUInt32LE(456, 4);
 
