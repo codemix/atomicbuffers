@@ -25,6 +25,8 @@ using v8::Number;
 using v8::Object;
 using v8::Value;
 
+using Nan::ThrowRangeError;
+
 
 NAN_METHOD(ReadInt32) {
   Nan::HandleScope scope;
@@ -32,6 +34,10 @@ NAN_METHOD(ReadInt32) {
     return;
 
   const size_t offset = info[1]->IntegerValue();
+  const size_t length = node::Buffer::Length(info[0]);
+
+  if (offset + sizeof(int32_t) > length)
+    return ThrowRangeError("Attempt to read out of bounds");
 
   char* const ptr = node::Buffer::Data(info[0]) + offset;
   int32_t* o = reinterpret_cast<int32_t*>(ptr);
@@ -49,6 +55,10 @@ NAN_METHOD(ReadUInt32) {
     return;
 
   const size_t offset = info[1]->IntegerValue();
+  const size_t length = node::Buffer::Length(info[0]);
+
+  if (offset + sizeof(uint32_t) > length)
+    return ThrowRangeError("Attempt to read out of bounds");
 
   char* const ptr = node::Buffer::Data(info[0]) + offset;
   int32_t* o = reinterpret_cast<int32_t*>(ptr);
@@ -66,6 +76,11 @@ NAN_METHOD(WriteInt32) {
     return;
 
   const size_t offset = info[2]->IntegerValue();
+  const size_t length = node::Buffer::Length(info[0]);
+
+  if (offset + sizeof(int32_t) > length)
+    return ThrowRangeError("Attempt to write out of bounds");
+
   char* const ptr = node::Buffer::Data(info[0]) + offset;
   const int32_t value = info[1]->Uint32Value();
 
@@ -81,6 +96,11 @@ NAN_METHOD(WriteUInt32) {
     return;
 
   const size_t offset = info[2]->IntegerValue();
+  const size_t length = node::Buffer::Length(info[0]);
+
+  if (offset + sizeof(uint32_t) > length)
+    return ThrowRangeError("Attempt to write out of bounds");
+
   char* const ptr = node::Buffer::Data(info[0]) + offset;
   const uint32_t value = info[1]->Uint32Value();
 
