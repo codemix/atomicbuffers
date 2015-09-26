@@ -32,6 +32,11 @@ describe('atomic-writes.js', function() {
       atomic.writeInt32(buf, Math.pow(2, 31), 0);
       assert.equal(buf.readInt32LE(0), - Math.pow(2, 31)); // overflows
     });
+    it('should throw on oob', function() {
+      assert.throws(function() {
+        atomic.writeInt32(buf, 0, buf.length);
+      });
+    });
   });
 
   describe('writeUInt32', function () {
@@ -56,6 +61,11 @@ describe('atomic-writes.js', function() {
       atomic.writeUInt32(buf, Math.pow(2, 32), 0);
       assert.equal(buf.readUInt32LE(0), 0); // overflows
     });
+    it('should throw on oob', function() {
+      assert.throws(function() {
+        atomic.writeUInt32(buf, 0, buf.length);
+      });
+    });
   });
 
   describe('readInt32', function () {
@@ -79,6 +89,12 @@ describe('atomic-writes.js', function() {
     it('should read ' + (Math.pow(2, 31)), function () {
       buf.writeInt32LE(Math.pow(2, 31), 0, true);
       assert.equal(atomic.readInt32(buf, 0), - Math.pow(2, 31));
+    });
+
+    it('should throw on oob', function() {
+      assert.throws(function() {
+        atomic.readInt32(buf, buf.length);
+      });
     });
   });
 
@@ -115,6 +131,12 @@ describe('atomic-writes.js', function() {
     var buf = new Buffer(16).fill(0);
     var result = atomic.writeInt32(buf, 12300, 0);
     console.log(result, buf.readUInt32LE(0), buf);
+  });
+
+  it('should throw on oob', function() {
+    assert.throws(function() {
+      atomic.readUInt32(buf, buf.length);
+    });
   });
 });
 
