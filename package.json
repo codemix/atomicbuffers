@@ -1,6 +1,6 @@
 {
   "name": "atomicbuffers",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Atomic `readInt32()`, `writeInt32()`, `readUInt32()` and `writeUInt32()` for node.js buffers.",
   "main": "lib/atomicbuffers.js",
   "scripts": {
